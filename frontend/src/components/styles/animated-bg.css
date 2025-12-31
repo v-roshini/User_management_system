@@ -1,0 +1,99 @@
+/* src/components/styles/animated-bg.css */
+
+.animated-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  overflow: hidden;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.gradient-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top right,
+    rgba(59, 130, 246, 0.3),
+    rgba(168, 85, 247, 0.2),
+    rgba(236, 72, 153, 0.3)
+  );
+  animation: gradient-pulse 8s ease-in-out infinite;
+}
+
+@keyframes gradient-pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.8;
+  }
+}
+
+.floating-shape {
+  position: absolute;
+  animation: float-and-rotate 3s ease-in-out infinite;
+  opacity: 0;
+  animation-fill-mode: forwards;
+}
+
+@keyframes float-and-rotate {
+  0% {
+    opacity: 0;
+    transform: translateY(0) scale(0) rotate(var(--rotate-start, 0deg));
+  }
+  10% {
+    opacity: 1;
+    transform: translateY(0) scale(1) rotate(var(--rotate-start, 0deg));
+  }
+  50% {
+    transform: translateY(-20px) scale(1) rotate(var(--rotate-end, 10deg));
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1) rotate(var(--rotate-start, 0deg));
+  }
+}
+
+.isometric-cube {
+  position: relative;
+  perspective: 1000px;
+}
+
+.cube-face {
+  position: absolute;
+  transform: rotateX(60deg) rotateZ(45deg);
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+  border-radius: 4px;
+}
+
+.decorative-dot {
+  border-radius: 50%;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+/* Glassmorphic effect improvements */
+.panel-glass,
+.auth-card,
+.modal-card {
+  backdrop-filter: blur(16px) saturate(180%);
+  -webkit-backdrop-filter: blur(16px) saturate(180%);
+  background-color: rgba(255, 255, 255, 0.92) !important;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+/* Enhance existing panels with glass effect */
+.profile-page,
+.admin-page {
+  background: transparent !important;
+}
+
+/* Menu glassmorphic styling */
+.menu {
+  backdrop-filter: blur(12px) saturate(180%);
+  -webkit-backdrop-filter: blur(12px) saturate(180%);
+  background-color: rgba(255, 255, 255, 0.95) !important;
+  border-right: 1px solid rgba(255, 255, 255, 0.3);
+}

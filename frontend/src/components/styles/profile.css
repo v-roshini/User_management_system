@@ -1,0 +1,331 @@
+/* UPDATED profile.css with glassmorphic design */
+
+.profile-page {
+  position: relative;
+  min-height: 100vh;
+  background: transparent;
+}
+
+/* HAMBURGER TOGGLER */
+.menu__toggler {
+  position: fixed;
+  top: 30px;
+  left: 30px;
+  z-index: 999;
+  height: 28px;
+  width: 28px;
+  outline: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.9);
+  border: none;
+  padding: 8px;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  transition: all 0.3s ease;
+}
+
+.menu__toggler:hover {
+  background: white;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+}
+
+.menu__toggler span,
+.menu__toggler span::before,
+.menu__toggler span::after {
+  position: absolute;
+  content: "";
+  width: 20px;
+  height: 2.5px;
+  background: var(--purple-1);
+  border-radius: 20px;
+  transition: 500ms cubic-bezier(0.77, 0, 0.175, 1);
+}
+
+.menu__toggler span::before {
+  top: -6px;
+}
+
+.menu__toggler span::after {
+  top: 6px;
+}
+
+.menu__toggler.active > span {
+  background: transparent;
+}
+
+.menu__toggler.active > span::before,
+.menu__toggler.active > span::after {
+  background: var(--purple-1);
+  top: 0;
+}
+
+.menu__toggler.active > span::before {
+  transform: rotate(-225deg);
+}
+
+.menu__toggler.active > span::after {
+  transform: rotate(225deg);
+}
+
+/* SLIDE BAR MENU with glassmorphic effect */
+.menu {
+  position: fixed;
+  left: -280px;
+  top: 0;
+  width: 280px;
+  height: 100vh;
+  backdrop-filter: blur(16px) saturate(180%);
+  -webkit-backdrop-filter: blur(16px) saturate(180%);
+  background-color: rgba(255, 255, 255, 0.95);
+  box-shadow: 4px 0 24px rgba(0, 0, 0, 0.15);
+  border-right: 1px solid rgba(255, 255, 255, 0.5);
+  z-index: 998;
+  padding: 80px 20px 20px 20px;
+  transition: left 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow-y: auto;
+}
+
+.menu.active {
+  left: 0;
+}
+
+.menu-header {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--purple-1);
+  margin-bottom: 20px;
+  padding-bottom: 10px;
+  border-bottom: 2px solid var(--purple-2);
+}
+
+.menu ul.permissions {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.menu ul.permissions li {
+  font-size: 16px;
+  padding: 12px 10px;
+  color: #333;
+  border-bottom: 1px solid rgba(240, 240, 245, 0.8);
+  border-left: 3px solid transparent;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  border-radius: 8px;
+  margin-bottom: 4px;
+}
+
+.menu ul.permissions li:hover {
+  background: linear-gradient(135deg, #f7f2ff, #fff);
+  border-left-color: var(--purple-2);
+  padding-left: 15px;
+  box-shadow: 0 2px 8px rgba(106, 17, 203, 0.1);
+}
+
+.menu ul.permissions li.active-menu-item,
+.menu ul.permissions li.active {
+  background: linear-gradient(135deg, var(--purple-1), var(--purple-2));
+  color: white;
+  border-left-color: #fff;
+  padding-left: 15px;
+  box-shadow: 0 4px 12px rgba(106, 17, 203, 0.3);
+}
+
+.menu p {
+  font-size: 16px;
+  padding: 12px 10px;
+  color: #666;
+  border-bottom: 1px solid #eee;
+}
+
+/* OVERLAY */
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(4px);
+  z-index: 997;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+}
+
+.overlay.visible {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* PROFILE CONTENT */
+.profile-content {
+  margin-left: 0;
+  padding-top: 20px;
+  width: 100%;
+  transition: margin-left 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  min-height: 100vh;
+}
+
+.profile-content.shift {
+  margin-left: 280px;
+}
+
+/* Profile page wrapper */
+.profile-page-wrapper,
+.admin-page-wrapper {
+  min-height: 100vh;
+  position: relative;
+}
+
+/* Enhanced profile panel */
+.profile-panel {
+  display: flex;
+  gap: 24px;
+  align-items: flex-start;
+}
+
+.profile-left {
+  width: 220px;
+  text-align: center;
+  animation: slide-in-left 0.6s ease;
+}
+
+.profile-right {
+  flex: 1;
+  animation: slide-in-right 0.6s ease;
+}
+
+@keyframes slide-in-left {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slide-in-right {
+  from {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Enhanced avatar circle */
+.avatar-circle {
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+  background: linear-gradient(180deg, var(--purple-1), var(--purple-2));
+  color: white;
+  font-size: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 12px auto;
+  font-weight: 700;
+  box-shadow: 0 8px 24px rgba(106, 17, 203, 0.4);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.avatar-circle::before {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(
+    circle,
+    rgba(255, 255, 255, 0.3) 0%,
+    transparent 70%
+  );
+  animation: rotate-shine 4s linear infinite;
+}
+
+@keyframes rotate-shine {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.avatar-circle:hover {
+  transform: scale(1.05);
+  box-shadow: 0 12px 32px rgba(106, 17, 203, 0.5);
+}
+
+.avatar-circle img {
+  position: relative;
+  z-index: 1;
+}
+
+/* Registration panel styling */
+.register-panel {
+  max-width: 100%;
+}
+
+/* responsive */
+@media (max-width: 980px) {
+  .profile-panel {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .profile-left {
+    width: 100%;
+    margin-bottom: 20px;
+  }
+
+  .profile-content.shift {
+    margin-left: 0;
+  }
+
+  .menu {
+    width: 240px;
+    left: -240px;
+  }
+}
+
+@media (max-width: 768px) {
+  .menu__toggler {
+    top: 20px;
+    left: 20px;
+  }
+
+  .menu {
+    padding-top: 70px;
+  }
+}
+
+/* Scrollbar styling for menu */
+.menu::-webkit-scrollbar {
+  width: 6px;
+}
+
+.menu::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.05);
+}
+
+.menu::-webkit-scrollbar-thumb {
+  background: var(--purple-1);
+  border-radius: 3px;
+}
+
+.menu::-webkit-scrollbar-thumb:hover {
+  background: var(--purple-2);
+}
