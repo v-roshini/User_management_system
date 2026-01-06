@@ -29,29 +29,27 @@ app.use("/admin", adminRoutes);
 app.use("/user", userRoutes);
 app.use("/uploads", express.static(path.join(process.cwd(), "uploads"))); // ← Now works
 // After all routes
-app.use((err, req, res, next) => {
-  console.error('🚨 Backend Error:', err.message, err.stack);
-  res.status(500).json({ error: err.message });
-});
-app.get('/debug', async (req, res) => {
-  try {
-    const prisma = new PrismaClient();
-    await prisma.$connect();
-    const users = await prisma.user.findMany();
-    res.json({ users: users.length, db: 'connected' });
-  } catch (e) {
-    res.status(500).json({ error: e.message });
-  }
-});
-app.get('/prisma-test', async (req, res) => {
+// 1. Test @prisma/client exists
+app.get('/debug/prisma-import', (req, res) => {
   try {
     const { PrismaClient } = require('@prisma/client');
-    res.json({ prisma: 'imported successfully' });
+    res.json({ status: 'PrismaClient imported ✓' });
   } catch (e) {
     res.status(500).json({ error: e.message });
   }
 });
 
+// 2. Test Prisma instantiation
+app.get('/debug/prisma-instance', async (req, res) => {
+  try {
+    const { PrismaClient } = require('@prisma/client');
+    const prisma = new PrismaClient();
+    await prisma.$connect();
+    res.json({ status: 'Prisma connected ✓' });
+  } catch (e) {
+    res.status(500).json({ error: e.message });
+  }
+});
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
