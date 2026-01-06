@@ -43,6 +43,15 @@ app.get('/debug', async (req, res) => {
     res.status(500).json({ error: e.message });
   }
 });
+app.get('/prisma-test', async (req, res) => {
+  try {
+    const { PrismaClient } = require('@prisma/client');
+    res.json({ prisma: 'imported successfully' });
+  } catch (e) {
+    res.status(500).json({ error: e.message });
+  }
+});
+
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
