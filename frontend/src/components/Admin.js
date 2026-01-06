@@ -674,6 +674,7 @@ const openPermissions = (user) => {
                     </>
                   )}
                 </div>
+                
 
                 {/* RIGHT: tables */}
                 <div className="profile-right">
@@ -758,6 +759,7 @@ const openPermissions = (user) => {
             </div>
           </div>
         )}
+        
 
         {/* Logout Confirmation Modal */}
         {showLogoutConfirm && (

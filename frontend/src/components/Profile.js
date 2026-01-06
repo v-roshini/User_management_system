@@ -522,9 +522,9 @@ function Profile() {
                         </div>
                       )}
 
-                    {activeMenu === "attendance" && can("attendance") && (
-                      <p>Attendance page coming soon…</p>
-                    )}
+                    <li className={activeMenu === 'attendance' ? 'active' : ''} onClick={() => setActiveMenu('attendance')}>
+  <a href="/attendance">Attendance</a>  {/* Direct link or use React Router */}
+</li>
                   </div>
                 </div>
               </div>
