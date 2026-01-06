@@ -4,7 +4,7 @@ import { Calendar } from 'react-calendar';
 import axios from 'axios';
 import Header from '../layouts/Header';
 import Footer from '../layouts/Footer';
-import AnimatedBackground from '../components/AnimatedBackground';
+import AnimatedBackground from './AnimatedBackground';
 import './styles/profile.css'; // Reuse styles
 
 const API = process.env.REACT_APP_API_URL;

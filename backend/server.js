@@ -7,6 +7,8 @@ import authRoutes from "./routes/auth.routes.js";
 import profileRoutes from "./routes/profile.routes.js";
 import adminRoutes from "./routes/admin.routes.js";
 import userRoutes from "./routes/user.routes.js";
+import attendanceRoutes from './routes/attendance.routes.js';
+
 
 dotenv.config();
 
@@ -28,7 +30,7 @@ app.use("/profile", profileRoutes);
 app.use("/admin", adminRoutes);
 app.use("/user", userRoutes);
 app.use("/uploads", express.static(path.join(process.cwd(), "uploads"))); // ← Now works
-
+app.use('/attendance', attendanceRoutes);
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
