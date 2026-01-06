@@ -8,15 +8,36 @@ datasource db {
 }
 
 model User {
-  id          Int      @id @default(autoincrement())
-  name        String
-  email       String   @unique
-  password    String
-  role        String
-  active      Boolean  @default(true)
-  permissions Json?     // ← Json? NOT String[]
-  createdAt   DateTime @default(now())
-  avatarUrl   String?  // ← Add this
+  id            Int         @id @default(autoincrement())
+  name          String
+  email         String      @unique
+  password      String
+  role          String
+  active        Boolean     @default(true)
+  permissions   Json?       // Array like ["dashboard", "attendance"]
+  avatarUrl     String?
+  createdAt     DateTime    @default(now())
+  attendances   Attendance[]  // Relation to Attendance
+
+  @@map("users")
 }
 
+model Attendance {
+  id              Int      @id @default(autoincrement())
+  userId          Int
+  date            DateTime // YYYY-MM-DD format in IST
+  checkinTime     String?  // e.g., "09:15:00"
+  checkoutTime    String?  // e.g., "18:45:00"
+  earlyCheckin    Boolean  @default(false)
+  earlyCheckout   Boolean  @default(false)
+  earlyCheckinApproved Boolean @default(false)
+  earlyCheckoutApproved Boolean @default(false)
+  status          String   @default("pending") // pending, approved, checked_in, checked_out
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
 
+  user            User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, date])
+  @@map("attendances")
+}
