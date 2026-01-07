@@ -31,6 +31,9 @@ app.use("/admin", adminRoutes);
 app.use("/user", userRoutes);
 app.use("/uploads", express.static(path.join(process.cwd(), "uploads"))); // ← Now works
 app.use('/attendance', attendanceRoutes);
+// ✅ Mount attendance routes
+app.use("/api/attendance", attendanceRoutes); // or app.use("/attendance", attendanceRoutes);
+
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
