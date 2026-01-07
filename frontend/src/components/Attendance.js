@@ -33,16 +33,22 @@ function Attendance() {
     fetchTodayAttendance();
   }, []);
 
-  const fetchTodayAttendance = async () => {
-    try {
-      const res = await axios.get(`${API}/attendance/today/${userId}`, {
-        headers: { Authorization: `Bearer ${token}` }
-      });
-      setTodayAttendance(res.data);
-    } catch (err) {
-      console.error('Error fetching attendance:', err);
-    }
-  };
+  // Attendance.js Line 38 → Fix URL
+const fetchTodayAttendance = async () => {
+  try {
+    const userId = localStorage.getItem("userId"); // ✅ Get from storage
+    if (!userId) throw new Error("No user ID");
+
+    const res = await axios.get(`${API}/attendance/today/${userId}`, {
+      headers: { Authorization: `Bearer ${localStorage.getItem("token")}` }
+    });
+    setAttendance(res.data);
+  } catch (err) {
+    console.error("Error fetching attendance:", err);
+    setAttendance(null);
+  }
+};
+
 
   const handleCheckin = async () => {
     if (timeInMinutes > CHECKIN_DEADLINE) {
