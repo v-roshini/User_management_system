@@ -3,7 +3,7 @@ import prisma from "../utils/prisma.js";
 
 /**
  * GET USER PERMISSIONS
- * Route: GET /api/users/:id/permissions (or from token)
+ * Route: GET /users/:id/permissions (or from token)
  */
 export const getUserPermissions = async (req, res) => {
   try {
@@ -45,7 +45,7 @@ export const getUserPermissions = async (req, res) => {
 
 /**
  * GET ALL USERS (ADMIN)
- * Route: GET /api/users
+ * Route: GET /users
  */
 export const getAllUsers = async (req, res) => {
   try {
